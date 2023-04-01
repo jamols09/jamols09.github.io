@@ -61,10 +61,11 @@ export default defineComponent({
       $q.dialog({
         title: "Confirm",
         message: "Are you sure you want to delete?",
-        cancel: true,
+        cancel: false,
         persistent: true,
       }).onOk(() => {
         tasks.value.splice(value, 1);
+        $q.notify("Task deleted");
       });
     };
 
