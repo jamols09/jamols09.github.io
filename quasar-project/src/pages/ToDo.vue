@@ -1,5 +1,21 @@
 <template>
   <q-page class="bg-grey-3 column">
+    <div class="row q-pa-sm bg-primary">
+      <q-input
+        class="col"
+        v-model="taskItem"
+        @keyup.enter="onAdd(taskItem)"
+        square
+        placeholder="Add task"
+        bg-color="white"
+        dense
+      >
+        <template v-slot:append>
+          <q-btn round dense flat icon="add" @click="onAdd(taskItem)" />
+        </template>
+      </q-input>
+    </div>
+
     <q-list class="bg-white" separator bordered>
       <q-item
         v-for="(task, index) in tasks"
@@ -50,8 +66,8 @@ export default defineComponent({
       { title: "Eat bananas", done: false },
       { title: "Poo bananas", done: false },
     ]);
-
     const confirmBtn = ref(false);
+    const taskItem = ref("");
 
     const onDone = (value) => {
       value.done = !value.done;
@@ -69,11 +85,17 @@ export default defineComponent({
       });
     };
 
+    const onAdd = (value) => {
+      tasks.value.push({ title: value, done: false });
+    };
+
     return {
-      confirmBtn,
       onDone,
       onDelete,
+      onAdd,
+      confirmBtn,
       tasks,
+      taskItem,
     };
   },
 });
