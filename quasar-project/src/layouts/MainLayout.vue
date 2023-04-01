@@ -67,9 +67,9 @@
     </q-drawer>
 
     <q-page-container>
-      <KeepAlive>
-        <router-view />
-      </KeepAlive>
+      <!-- <keep-alive> -->
+      <router-view />
+      <!-- </keep-alive> -->
     </q-page-container>
   </q-layout>
 </template>
